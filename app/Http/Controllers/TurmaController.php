@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\TurmaRequest;
 
 use App\Models\Models\Usuarios;
+use App\Models\Models\Turmas;
 
-class UsuarioController extends Controller
+use Illuminate\Support\Str;
+
+class TurmaController extends Controller
 {
 
     private $usuario;
+    private $turma;
 
     public function __construct(){
         $this->usuario = new Usuarios();
+        $this->turma = new Turmas();
     }
 
 
@@ -23,8 +28,8 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //return view('index');
-       dd($this->usuario->all());
+        $turmas = $this->turma->all();
+        return view('index', compact('turmas'));
     }
 
     /**
@@ -34,7 +39,8 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        //
+        $usuario = 1;
+        return view('create', compact('usuario'));
     }
 
     /**
@@ -43,9 +49,18 @@ class UsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TurmaRequest $request)
     {
-        //
+        $cad = $this->turma->create([
+            'nome' => $request->nome,
+            'descricao' => $request->descricao,
+            'criador' => $request->criador,
+            'convite' => Str::random(5)
+        ]);
+
+        if($cad){
+            return redirect('turmas');
+        }
     }
 
     /**
@@ -56,7 +71,8 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        //
+        $turma = $this->turma->find($id);
+        return view('ver', compact('turma'));
     }
 
     /**
@@ -67,7 +83,7 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        //
+ 
     }
 
     /**
@@ -77,7 +93,7 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TurmaRequest $request, $id)
     {
         //
     }
@@ -92,4 +108,5 @@ class UsuarioController extends Controller
     {
         //
     }
+
 }

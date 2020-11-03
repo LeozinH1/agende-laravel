@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\TurmaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +14,5 @@ use App\Http\Controllers\UsuarioController;
 |
 */
 
-Route::resource('/', UsuarioController::class);
+Route::resource('/turmas', TurmaController::class);
 

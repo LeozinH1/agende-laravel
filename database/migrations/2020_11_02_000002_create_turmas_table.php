@@ -16,6 +16,7 @@ class CreateTurmasTable extends Migration
         Schema::create('turmas', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
+            $table->string('descricao');
             $table->bigInteger('criador')->unsigned();
             $table->foreign('criador')->references('id')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
             $table->string('convite')->unique();
