@@ -23,7 +23,7 @@
                <td>
                   <a href="{{url("turmas/$item->id")}}"> <button> Visualizar </button> </a>
                   <a href="{{url("turmas/$item->id/edit")}}"> <button> Editar </button> </a>
-                  <a href=""> <button> Deletar </button> </a>
+                  <a href="{{url("turmas/$item->id")}}"> <button> Deletar </button> </a>
                </td>
             </tr>
          @endforeach

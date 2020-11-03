@@ -83,7 +83,9 @@ class TurmaController extends Controller
      */
     public function edit($id)
     {
- 
+        $turma = $this->turma->find($id);
+        $usuario = $this->usuario->all();
+        return view('create', compact('turma', 'usuario'));
     }
 
     /**
@@ -95,7 +97,13 @@ class TurmaController extends Controller
      */
     public function update(TurmaRequest $request, $id)
     {
-        //
+        $this->turma->where(['id' => $id])->update([
+            'nome' => $request->nome,
+            'descricao' => $request->descricao,
+            'criador' => $request->criador,
+        ]);
+
+        return redirect('turmas');
     }
 
     /**
