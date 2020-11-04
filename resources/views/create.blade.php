@@ -5,9 +5,7 @@
 @endsection
 
 @section('content')
-   <h1>Home > Turmas > @if(isset($turma)) Editar @else Cadastrar @endif</h2>
-
-
+   
    @if(isset($turma))
    <form name="edit_turma" id="edit_turma" action="{{url("turmas/$turma->id")}}" method="POST">
       @method("PUT")
@@ -16,25 +14,34 @@
    @endif
       @csrf
 
+      <h3>@if(isset($turma)) EDITAR @else CADASTRAR @endif</h3>
+
       @if(isset($errors) && count($errors) > 0)
          <div>
             @foreach($errors->all() as $erro)
-               {{$erro}} <br>
+               <div id="message" class="alert alert-danger" role="alert">
+                  {{$erro}}
+               </div>
             @endforeach
          </div>
       @endif
-      
 
-      <label for="nome"> Nome </label>
-      <input type="text" name="nome" id="nome" value="{{$turma->nome ?? ''}}" required>
+      <div class="form-group">
+         <label for="nome"> Nome </label>
+         <input type="text" name="nome" id="nome" value="{{$turma->nome ?? ''}}" class="form-control" required>
+      </div>
 
-      <br>
+      <div class="form-group">
+         <label for="descricao"> Descrição </label>
+         <textarea class="form-control" name="descricao" id="descricao" rows="3" required>{{$turma->descricao ?? ''}}</textarea>
+      </div>
 
-      <label for="descricao"> Descrição </label>
-      <input type="text" name="descricao" id="descricao" value="{{$turma->descricao ?? ''}}" required>
-
-      <br>
-
-      <input type="submit" value="@if(isset($turma)) Editar @else Cadastrar @endif">
+      <input type="submit" value="@if(isset($turma)) Editar @else Cadastrar @endif" class="btn btn-primary">
+      <a href="{{ route("turmas.index") }}" class="btn btn-light">Voltar</a>
    </form>
+
+   <script>
+      $("#message").delay(3200).fadeOut(300);
+   </script>
+
 @endsection

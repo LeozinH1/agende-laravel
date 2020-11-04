@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-   <h1>Home > Turmas > Ver</h2>
+   <h3>VISUALIZAR</h3>
 
    @php
       $usuario = $turma->find($turma->id)->relUsuario;
@@ -14,5 +14,7 @@
    {{$turma->nome}} <br>
    {{$usuario->nome_completo}} <br>
    {{$turma->convite}} <br>
+
+   <a href="{{ route("turmas.index") }}" class="btn btn-light mt-3">Voltar</a>
 
 @endsection

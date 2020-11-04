@@ -5,22 +5,19 @@
 @endsection
 
 @section('content')
-   <h1>Home > Turmas</h2>
+   <h3>TURMAS</h3>
+   
+   <a href="{{url("turmas/create")}}"> <button class="btn btn-primary float-right mt-3 mb-3 mr-0"> Cadastrar </button> </a>
 
-   <a href="{{url("turmas/create")}}"> <button> Cadastrar </button> </a>
-
-   @if (session('success'))
-      <div id="message">
-         {{ session('success') }}
-      </div>
-   @endif
-
-   <table border="1">
-      <tr>
-         <th>Turma</th>
-         <th>Criador</th>
-         <th>Ações</th>
-      </tr>
+   <table class="table table-bordered">
+      <thead>
+         <tr>
+            <th>Turma</th>
+            <th>Criador</th>
+            <th>Ações</th>
+         </tr>
+      </thead>
+      <tbody>
          @foreach($turmas AS $item)
 
             @php
@@ -31,16 +28,17 @@
                <td>{{$item->nome}}</td>
                <td>{{$usuario->nome_completo}}</td>
                <td>
-                  <a href="{{url("turmas/$item->id")}}"> <button> Visualizar </button> </a>
-                  <a href="{{url("turmas/$item->id/edit")}}"> <button> Editar </button> </a>    
-                  <form action="{{ route('turmas.destroy', $item->id) }}" method="POST">
+                  <a href="{{url("turmas/$item->id")}}" class="btn btn-primary"> Visualizar </a> 
+                  <a href="{{url("turmas/$item->id/edit")}}" class="btn btn-primary"> Editar </a> 
+                  <form action="{{ route('turmas.destroy', $item->id) }}" method="POST" style="display: inline;">
                      @csrf
                      @method('delete')
-                     <button type="submit">Deletar</button>
+                     <button type="submit" class="btn btn-primary">Deletar</button>
                   </form>
                </td>
             </tr>
          @endforeach
+      </tbody>
    </table>
 
    <script>

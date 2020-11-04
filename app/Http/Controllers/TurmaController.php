@@ -59,7 +59,7 @@ class TurmaController extends Controller
             'convite' => strtoupper(Str::random(5))
         ]);
 
-        return redirect('turmas');
+        return redirect('turmas')->with('success','Turma criada com sucesso.');;
     }
 
     /**
@@ -102,7 +102,7 @@ class TurmaController extends Controller
             'criador' => "1",
         ]);
 
-        return redirect('turmas');
+        return redirect('turmas')->with('success','Turma editada com sucesso.');;
     }
 
     /**
