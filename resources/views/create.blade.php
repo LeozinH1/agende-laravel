@@ -1,5 +1,9 @@
 @extends('templates.template')
 
+@section('head')
+   <title>@if(isset($turma)) Editar Turma @else Criar Turma @endif</title>
+@endsection
+
 @section('content')
    <h1>Home > Turmas > @if(isset($turma)) Editar @else Cadastrar @endif</h2>
 
@@ -28,10 +32,6 @@
 
       <label for="descricao"> Descrição </label>
       <input type="text" name="descricao" id="descricao" value="{{$turma->descricao ?? ''}}" required>
-
-      <br>
-
-      <input type="text" name="criador" id="criador" value="{{$turma->criador ?? $usuario}}" required>
 
       <br>
 

@@ -25,17 +25,14 @@ class TurmaRequest extends FormRequest
     {
         return [
             'nome' => 'required',
-            'descricao' => 'required',
-            'criador' => 'required|numeric'
+            'descricao' => 'required'
         ];
     }
 
     public function messages(){
         return [
             'nome.required' => 'Preencha o campo nome',
-            'descricao.required' => 'Preencha o campo descrição',
-            'criador.required' => 'Prencha o campo criador',
-            'criador.numeric' => 'Preencha o campo criador apenas com numeros'
+            'descricao.required' => 'Preencha o campo descrição'
         ];
     }
 }

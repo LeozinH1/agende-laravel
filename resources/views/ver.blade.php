@@ -1,5 +1,9 @@
 @extends('templates.template')
 
+@section('head')
+   <title>Ver Turma</title>
+@endsection
+
 @section('content')
    <h1>Home > Turmas > Ver</h2>
 

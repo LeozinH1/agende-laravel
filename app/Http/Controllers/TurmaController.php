@@ -28,8 +28,10 @@ class TurmaController extends Controller
      */
     public function index()
     {
-        $turmas = $this->turma->all();
-        return view('index', compact('turmas'));
+         $turmas = $this->turma->all();
+        // $usuarios = $this->usuario->all();
+
+         return view('index', compact('turmas'));
     }
 
     /**
@@ -39,8 +41,7 @@ class TurmaController extends Controller
      */
     public function create()
     {
-        $usuario = 1;
-        return view('create', compact('usuario'));
+        return view('create');
     }
 
     /**
@@ -51,16 +52,14 @@ class TurmaController extends Controller
      */
     public function store(TurmaRequest $request)
     {
-        $cad = $this->turma->create([
+        $this->turma->create([
             'nome' => $request->nome,
             'descricao' => $request->descricao,
-            'criador' => $request->criador,
-            'convite' => Str::random(5)
+            'criador' => "1",
+            'convite' => strtoupper(Str::random(5))
         ]);
 
-        if($cad){
-            return redirect('turmas');
-        }
+        return redirect('turmas');
     }
 
     /**
@@ -100,7 +99,7 @@ class TurmaController extends Controller
         $this->turma->where(['id' => $id])->update([
             'nome' => $request->nome,
             'descricao' => $request->descricao,
-            'criador' => $request->criador,
+            'criador' => "1",
         ]);
 
         return redirect('turmas');
@@ -114,7 +113,9 @@ class TurmaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->turma->destroy($id);
+        //return redirect('turmas');
+        return redirect('turmas')->with('success','Turma apagada com sucesso.');
     }
 
 }
