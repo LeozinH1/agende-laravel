@@ -36,7 +36,7 @@
          <textarea class="form-control" name="descricao" id="descricao" rows="3" required>{{$turma->descricao ?? ''}}</textarea>
       </div>
 
-      <input type="submit" value="@if(isset($turma)) Editar @else Cadastrar @endif" class="btn btn-primary">
+      <input type="submit" value="@if(isset($turma)) Salvar @else Cadastrar @endif" class="btn btn-primary">
       <a href="{{ route("turmas.index") }}" class="btn btn-light">Voltar</a>
    </form>
 

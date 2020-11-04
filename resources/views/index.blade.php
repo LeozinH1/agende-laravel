@@ -41,6 +41,12 @@
       </tbody>
    </table>
 
+   @if(session('success'))
+      <div id="message" class="alert alert-success" role="alert">
+         {{session('success')}}
+      </div>
+   @endif
+
    <script>
       $("#message").delay(3200).fadeOut(300);
    </script>
