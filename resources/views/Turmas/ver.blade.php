@@ -16,7 +16,12 @@
    <br><br>
 
    <div class="row">
-      <div class="col-12">
+
+      <div class="col-6">
+         <a href="" class="btn btn-success"> + Criar tarefa </a>
+      </div>
+
+      <div class="col-6">
 
          <form action="{{ route('turmas.destroy', $turma->id) }}" method="POST" style="display: inline;">
             @csrf
@@ -24,7 +29,6 @@
             <button type="submit" class="btn btn-danger float-right">Deletar turma</button>
          </form>
 
-         <a href="" class="btn btn-success float-right mr-1"> Nova tarefa </a>
          <a href="" class="btn btn-light float-right mr-1"> Membros </a>
          <a href="{{url("turmas/$turma->id/edit")}}" class="btn btn-light float-right mr-1"> Editar </a>
       </div>

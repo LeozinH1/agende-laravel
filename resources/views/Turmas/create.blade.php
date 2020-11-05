@@ -1,7 +1,7 @@
 @extends('templates.template')
 
 @section('head')
-   <title>@if(isset($turma)) Editar Turma @else Criar Turma @endif</title>
+   <title>@if(isset($turma)) Editar Turma @else Nova Turma @endif</title>
 @endsection
 
 @section('content')
@@ -14,7 +14,7 @@
    @endif
       @csrf
 
-      <h3 class="mb-5 mt-5">@if(isset($turma)) EDITAR @else CADASTRAR @endif</h3>
+      <h3 class="mb-5 mt-5">@if(isset($turma)) EDITAR TURMA @else NOVA TURMA @endif</h3>
 
       @if(isset($errors) && count($errors) > 0)
          <div>
@@ -36,7 +36,7 @@
          <textarea class="form-control" name="descricao" id="descricao" rows="3" required>{{$turma->descricao ?? ''}}</textarea>
       </div>
 
-      <input type="submit" value="@if(isset($turma)) Salvar @else Cadastrar @endif" class="btn btn-primary">
+      <input type="submit" value="@if(isset($turma)) Salvar @else Criar @endif" class="btn btn-primary">
       <a href="@if(isset($turma)) {{ url('turmas/' . $turma->id) }} @else {{ url('turmas') }} @endif" class="btn btn-light">Voltar</a>
    </form>
 

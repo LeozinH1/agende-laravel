@@ -8,18 +8,22 @@
    <h3 class="mb-5 mt-5">MINHAS TURMAS</h3>
    
    <div class="row mb-3">
-      <div class="col-6">
+      <div class="col-12">
          <form class="form-inline">
             <div class="form-group mr-2">
                <input type="text" class="form-control" id="cod_convite" name="cod_convite" placeholder="Convite" required>
             </div>
             <button type="submit" class="btn btn-primary">Entrar</button>
+            <label class="mr-2 ml-2"> ou </label>
+            <a href="{{url("turmas/create")}}" class="btn btn-success"> + Criar turma </a>
          </form>
+
+   
+
+         
       </div>
 
-      <div class="col-6">
-         <a href="{{url("turmas/create")}}" class="btn btn-primary float-right"> Nova turma </a>
-      </div>
+
    </div>
 
 
