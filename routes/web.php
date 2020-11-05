@@ -16,3 +16,5 @@ use App\Http\Controllers\TurmaController;
 
 Route::resource('/turmas', TurmaController::class);
 
+Route::view('/', 'login');
+

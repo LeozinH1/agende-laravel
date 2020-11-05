@@ -14,7 +14,7 @@
    @endif
       @csrf
 
-      <h3>@if(isset($turma)) EDITAR @else CADASTRAR @endif</h3>
+      <h3 class="mb-5 mt-5">@if(isset($turma)) EDITAR @else CADASTRAR @endif</h3>
 
       @if(isset($errors) && count($errors) > 0)
          <div>
@@ -37,7 +37,7 @@
       </div>
 
       <input type="submit" value="@if(isset($turma)) Salvar @else Cadastrar @endif" class="btn btn-primary">
-      <a href="{{ route("turmas.index") }}" class="btn btn-light">Voltar</a>
+      <a href="@if(isset($turma)) {{ url('turmas/' . $turma->id) }} @else {{ url('turmas') }} @endif" class="btn btn-light">Voltar</a>
    </form>
 
    <script>

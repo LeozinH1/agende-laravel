@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TurmaRequest;
 
-use App\Models\Models\Usuarios;
-use App\Models\Models\Turmas;
+use App\Models\Usuarios;
+use App\Models\Turmas;
 
 use Illuminate\Support\Str;
 
@@ -31,7 +31,7 @@ class TurmaController extends Controller
          $turmas = $this->turma->all();
         // $usuarios = $this->usuario->all();
 
-         return view('index', compact('turmas'));
+         return view('turmas.index', compact('turmas'));
     }
 
     /**
@@ -41,7 +41,7 @@ class TurmaController extends Controller
      */
     public function create()
     {
-        return view('create');
+        return view('turmas.create');
     }
 
     /**
@@ -52,14 +52,18 @@ class TurmaController extends Controller
      */
     public function store(TurmaRequest $request)
     {
-        $this->turma->create([
+        $turma = $this->turma->create([
             'nome' => $request->nome,
             'descricao' => $request->descricao,
             'criador' => "1",
             'convite' => strtoupper(Str::random(5))
         ]);
 
-        return redirect('turmas')->with('success','Turma criada com sucesso.');;
+        if($turma){
+            return redirect('turmas/' . $turma->id)->with('success','Turma criada com sucesso.');
+        }else{
+            return redirect('turmas')->with('error','Erro ao criara turma.');
+        }
     }
 
     /**
@@ -71,7 +75,7 @@ class TurmaController extends Controller
     public function show($id)
     {
         $turma = $this->turma->find($id);
-        return view('ver', compact('turma'));
+        return view('turmas.ver', compact('turma'));
     }
 
     /**
@@ -84,7 +88,7 @@ class TurmaController extends Controller
     {
         $turma = $this->turma->find($id);
         $usuario = $this->usuario->all();
-        return view('create', compact('turma', 'usuario'));
+        return view('turmas.create', compact('turma', 'usuario'));
     }
 
     /**
@@ -102,7 +106,7 @@ class TurmaController extends Controller
             'criador' => "1",
         ]);
 
-        return redirect('turmas')->with('success','Turma editada com sucesso.');;
+        return redirect('turmas/' . $id)->with('success','Turma editada com sucesso.');;
     }
 
     /**
